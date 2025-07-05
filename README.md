@@ -1,68 +1,89 @@
-# CodeIgniter 4 Application Starter
+# Sistem Pakar Diagnosa Penyakit Domba
 
-## What is CodeIgniter?
+Ini adalah aplikasi sistem pakar berbasis web yang dibangun untuk membantu peternak mendiagnosis penyakit pada ternak domba. Sistem ini menggunakan metode **Certainty Factor (CF)** untuk menghitung tingkat keyakinan terhadap suatu penyakit berdasarkan gejala-gejala yang dipilih oleh pengguna.
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+---
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+## Fitur Utama
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+### **Untuk Pengguna (Peternak)**
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+- **Registrasi & Login:** Sistem otentikasi untuk pengguna.
+- **Diagnosa Penyakit:** Antarmuka untuk memilih gejala dan tingkat keyakinan ($CF_{User}$).
+- **Hasil Diagnosa:** Menampilkan hasil penyakit yang paling mungkin beserta persentase keyakinan, deskripsi, dan solusi.
+- **Ringkasan Kesimpulan:** Paragraf naratif yang mudah dipahami mengenai hasil diagnosa.
+- **Riwayat Diagnosa:** Pengguna dapat melihat kembali semua hasil diagnosa yang pernah dilakukannya.
 
-## Installation & updates
+### **Untuk Admin (Pakar)**
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+- **Dashboard Admin:** Halaman utama dengan ringkasan data (total gejala, penyakit, aturan) dan navigasi yang mudah.
+- **CRUD Data Master:** Kemampuan untuk menambah, mengubah, dan menghapus (CRUD) data **Gejala**, **Penyakit**, dan **Aturan (Basis Pengetahuan)**.
+- **Riwayat Diagnosa Global:** Admin dapat melihat, mencari, dan mengurutkan semua riwayat diagnosa dari semua pengguna.
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+---
 
-## Setup
+## Tampilan Sistem
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+#### Halaman Login
 
-## Important Change with index.php
+![Halaman Login](public/screenshots/login.png)
+_(Ganti `login.png` dengan nama file screenshot Anda)_
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+#### Halaman Hasil Diagnosa
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+![Hasil Diagnosa](public/screenshots/hasil-diagnosa.png)
+_(Ganti `hasil-diagnosa.png` dengan nama file screenshot Anda)_
 
-**Please** read the user guide for a better explanation of how CI4 works!
+#### Dashboard Admin
 
-## Repository Management
+![Dashboard Admin](public/screenshots/admin-dashboard.png)
+_(Ganti `admin-dashboard.png` dengan nama file screenshot Anda)_
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+---
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+## Teknologi yang Digunakan
 
-## Server Requirements
+- **Framework:** CodeIgniter 4
+- **Bahasa Pemrograman:** PHP 8.x
+- **Database:** MySQL
+- **Frontend:** Bootstrap 5, JavaScript, JQuery
+- **Library Tambahan:** DataTables.js
 
-PHP version 8.1 or higher is required, with the following extensions installed:
+---
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+## Panduan Instalasi Lokal
 
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - If you are still using PHP 7.4 or 8.0, you should upgrade immediately.
-> - The end of life date for PHP 8.1 will be December 31, 2025.
+1.  **Clone repository ini:**
+    ```bash
+    git clone [https://github.com/NAMA_USER_ANDA/NAMA_REPO_ANDA.git](https://github.com/NAMA_USER_ANDA/NAMA_REPO_ANDA.git)
+    ```
+2.  **Masuk ke direktori proyek:**
+    ```bash
+    cd nama-folder-proyek
+    ```
+3.  **Install dependencies** menggunakan Composer:
+    ```bash
+    composer install
+    ```
+4.  **Konfigurasi file `.env`**: Salin file `env` menjadi `.env` dan sesuaikan pengaturan database (`database.default.hostname`, `database.default.database`, dll).
+5.  **Buat database** di MySQL dengan nama yang sesuai dengan yang ada di file `.env`.
+6.  **Import struktur database**: Impor file `database/db_domba_pakar.sql` ke dalam database yang baru Anda buat.
+7.  **Jalankan Seeder** untuk mengisi data awal:
+    ```bash
+    php spark db:seed UserSeeder
+    php spark db:seed AturanMassalSeeder
+    ```
+8.  **Jalankan server** pengembangan:
+    ```bash
+    php spark serve
+    ```
+9.  Buka aplikasi di `http://localhost:8080`.
+    - Login Admin: `username: admin`, `password: admin123`
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+---
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+## Tim Pengembang
+
+- **M Nashir Lidienillah** (11222090)
+- **Denny Setiawan** (11222025)
+- **Iqbal Maulana Ashari** (11222056)
