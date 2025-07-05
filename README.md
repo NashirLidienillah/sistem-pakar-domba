@@ -84,6 +84,6 @@ _(Ganti `admin-dashboard.png` dengan nama file screenshot Anda)_
 
 ## Tim Pengembang
 
-- **M Nashir Lidienillah** (11222090)
-- **Denny Setiawan** (11222025)
-- **Iqbal Maulana Ashari** (11222056)
+Mahasiswa Universitas Serang Raya - Teknik Informatika
+
+- **M Nashir Lidienillah**
