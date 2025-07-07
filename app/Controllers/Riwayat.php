@@ -219,4 +219,19 @@ class Riwayat extends BaseController
 
         return view('admin/riwayat/detail', $data);
     }
+
+    public function hapus($id)
+{
+    // Cek apakah data ada
+    if ($this->riwayatDiagnosaModel->find($id)) {
+        // Hapus data dari tabel riwayat_diagnosa
+        $this->riwayatDiagnosaModel->delete($id);
+
+        session()->setFlashdata('success', 'Data riwayat diagnosa berhasil dihapus.');
+        return redirect()->to('/admin/riwayat');
+    } else {
+        session()->setFlashdata('error', 'Data riwayat tidak ditemukan.');
+        return redirect()->to('/admin/riwayat');
+    }
+}
 }
